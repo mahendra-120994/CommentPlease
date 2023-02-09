@@ -1,0 +1,55 @@
+.bg_container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.create_comment_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+.heading {
+}
+.input_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.para {
+}
+input {
+  margin-bottom: 8px;
+  width: 50%;
+}
+.textarea {
+  margin-bottom: 8px;
+  width: 60%;
+}
+.button {
+  align-self: flex-start;
+}
+.count {
+}
+.comment {
+  margin-left: 5px;
+}
+.img_container {
+  width: 40%;
+}
+.comments_container {
+  width: 90%;
+}
+.comments_list {
+  margin: 0;
+  padding: 0;
+}
