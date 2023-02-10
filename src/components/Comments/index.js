@@ -1,12 +1,13 @@
 import {Component} from 'react'
 import {v4 as uuidv4} from 'uuid'
+import {formatDistanceToNow} from 'date-fns'
 import './index.css'
 import CommentItem from '../CommentItem/index'
 
 const imgUrl =
   'https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png'
 
-const initialContainerBackgroundClassNames = [
+const colorList = [
   'amber',
   'blue',
   'orange',
@@ -17,7 +18,7 @@ const initialContainerBackgroundClassNames = [
 ]
 
 class Comments extends Component {
-  state = {name: '', comment: '', commentList: []}
+  state = {name: '', comment: '', commentList: [], count: 0}
 
   addName = event => {
     this.setState({name: event.target.value})
@@ -27,7 +28,7 @@ class Comments extends Component {
     this.setState({comment: event.target.value})
   }
 
-  toggelIsLiked = id => {
+  toggleIsLiked = id => {
     this.setState(prev => ({
       commentList: prev.commentList.map(eachComment => {
         if (eachComment.id === id) {
@@ -41,30 +42,38 @@ class Comments extends Component {
   addComment = event => {
     event.preventDefault()
     const {name, comment} = this.state
-    const newComment = {
-      id: uuidv4(),
-      name,
-      comment,
-      isLiked: false,
-    }
 
-    this.setState(prev => ({
-      commentList: [...prev.commentList, newComment],
-      name: '',
-      comment: '',
-    }))
+    const randomNum = Math.floor(Math.random() * (0, colorList.length) + 0)
+    const randomColor = colorList[randomNum]
+
+    if (name !== '' && comment !== '') {
+      const newComment = {
+        id: uuidv4(),
+        name,
+        comment,
+        isLiked: false,
+        time: formatDistanceToNow(new Date()),
+        firstLater: name[0],
+        latterColor: randomColor,
+      }
+
+      this.setState(prev => ({
+        commentList: [...prev.commentList, newComment],
+        name: '',
+        comment: '',
+        count: prev.count + 1,
+      }))
+    }
   }
 
   deleteComment = id => {
-    const {commentList} = this.state
-    const updatedtList = commentList.filter(
-      eachComment => eachComment.id !== id,
-    )
-    this.setState({commentList: updatedtList})
+    const {commentList, count} = this.state
+    const updatedList = commentList.filter(eachComment => eachComment.id !== id)
+    this.setState({commentList: updatedList, count: count - 1})
   }
 
   render() {
-    const {name, comment, commentList} = this.state
+    const {name, comment, commentList, count} = this.state
     return (
       <div className="bg_container">
         <div className="container">
@@ -90,8 +99,8 @@ class Comments extends Component {
               <button type="submit" className="button">
                 Add Comment
               </button>
-              <p className="comment">
-                <span className="count">0</span> comment
+              <p className="comment_count">
+                <span className="count">{count}</span> comment
               </p>
             </form>
           </div>
@@ -99,6 +108,7 @@ class Comments extends Component {
             <img className="img" src={imgUrl} alt="comments" />
           </div>
         </div>
+        <hr className="ruler" />
         <div className="comments_container">
           <ul className="comments_list">
             {commentList.map(commentDetails => (
@@ -106,7 +116,7 @@ class Comments extends Component {
                 key={commentDetails.id}
                 commentDetails={commentDetails}
                 deleteComment={this.deleteComment}
-                toggelIsLiked={this.toggelIsLiked}
+                toggleIsLiked={this.toggleIsLiked}
               />
             ))}
           </ul>

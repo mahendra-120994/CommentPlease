@@ -19,6 +19,7 @@
   width: 40%;
 }
 .heading {
+  color: #1e293b;
 }
 .input_container {
   display: flex;
@@ -26,25 +27,54 @@
   justify-content: space-between;
 }
 .para {
+  color: #475569;
+  font-size: 20px;
 }
 input {
-  margin-bottom: 8px;
-  width: 50%;
-}
-.textarea {
+  font-size: 16px;
+  padding: 5px;
   margin-bottom: 8px;
   width: 60%;
+  color: #1e293b;
+  border: solid 1px #94a3b8;
+  border-radius: 5px;
+}
+.textarea {
+  font-size: 16px;
+  padding: 5px;
+  margin-bottom: 8px;
+  width: 100%;
+  color: #1e293b;
+  border-color: #94a3b8;
+  border-radius: 5px;
 }
 .button {
+  color: #ffffff;
+  background-color: #0ea5e9;
+  border-radius: 5px;
+  border-width: 0;
+  padding: 5px;
   align-self: flex-start;
 }
 .count {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #0ea5e9;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  padding: 0px 5px 0px 5px;
 }
-.comment {
-  margin-left: 5px;
+.comment_count {
+  color: #475569;
 }
 .img_container {
   width: 40%;
+}
+.ruler {
+  border: solid 1px #dee0e3;
+  width: 90%;
 }
 .comments_container {
   width: 90%;
